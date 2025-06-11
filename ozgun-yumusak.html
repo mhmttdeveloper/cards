@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Av. Adınız Soyadınız - Dijital Kimlik</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-dark: #1a1d24;
+            --text-light: #6a717f;
+            --accent-blue: #3a5a9c;
+            --divider: #f0f2f5;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px; /* Daha ferah bir görünüm için */
+            margin: 0 auto;
+        }
+        
+        .hero-section {
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 24px;
+            border: 4px solid var(--divider);
+        }
+        
+        .name {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .title {
+            font-size: 18px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-top: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .bio {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .main-actions {
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .action-btn {
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(58, 90, 156, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--divider);
+            color: var(--text-dark);
+        }
+         .btn-secondary:hover {
+            background-color: #e6e8eb;
+        }
+
+        .content-section {
+            padding: 40px 24px;
+            background-color: #f9fafb;
+            border-top: 1px solid var(--divider);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+        .info-item .icon {
+            color: var(--accent-blue);
+            background-color: #eff3f9;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .info-item .text .label {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+         .info-item .text .value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .qr-modal{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;z-index:1000}.qr-modal.visible{opacity:1;visibility:visible}.qr-modal-content{background-color:white;padding:30px;border-radius:16px;text-align:center;}.close-btn{margin-top:20px;cursor:pointer;color:var(--accent-blue);font-weight:600;font-size:16px;}#qrcode-container{margin-bottom:15px;background:white;padding:10px;border-radius:8px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero-section">
+            <img class="profile-photo" src="https://placehold.co/300x300/e5e5e5/666666?text=AV" alt="Profil Fotoğrafı">
+            <h1 class="name">Av. Adınız Soyadınız</h1>
+            <p class="title">Hukuk Bürosu Adı</p>
+            <p class="bio">
+                Ceza hukuku alanında uzman, müvekkillerine adil ve etkili çözümler sunmayı ilke edinmiş bir hukuk profesyoneli.
+            </p>
+        </section>
+
+        <section class="main-actions">
+            <a href="#" id="save-contact-btn" class="action-btn btn-primary">Rehbere Kaydet</a>
+            <a href="#" id="share-btn" class="action-btn btn-secondary">Paylaş</a>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">Hızlı İletişim</h2>
+            <div class="info-grid">
+                 <a href="tel:+905551234567" class="info-item">
+                    <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg></div>
+                    <div class="text"><div class="value">Telefonla Ara</div></div>
+                </a>
+                 <a href="https://wa.me/905551234567" target="_blank" class="info-item">
+                    <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M19.05 4.94A9.96 9.96 0 0 0 12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.45 1.27 4.96L2 22l5.05-1.27a9.96 9.96 0 0 0 4.95 1.27h.01c5.52 0 10-4.48 10-10 0-2.76-1.12-5.26-2.96-7.07zM12 20.13h-.01a8.1 8.1 0 0 1-4.04-1.12l-.29-.17-3  .76.77-2.94-.19-.3A8.1 8.1 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8.13z"></path></svg></div>
+                    <div class="text"><div class="value">WhatsApp'tan Yaz</div></div>
+                </a>
+                 <a href="mailto:avukat@hukukburosu.com" class="info-item">
+                    <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg></div>
+                    <div class="text"><div class="value">E-posta Gönder</div></div>
+                </a>
+            </div>
+
+            <h2 class="section-title" style="margin-top:40px;">Detaylar</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                     <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg></div>
+                     <div class="text"><div class="label">Adres</div><div class="value">Örnek Cad. No:123, Şişli/İstanbul</div></div>
+                </div>
+                 <a href="https://linkedin.com/in/profiliniz" target="_blank" class="info-item">
+                     <div class="icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-11 6H5v7h3V9zm-1.5-2.25A1.75 1.75 0 0 0 8.25 5 1.75 1.75 0 0 0 6.5 6.75 1.75 1.75 0 0 0 4.75 8.5 1.75 1.75 0 0 0 6.5 6.75zM19 16h-3v-3.26c0-1.74-3-1.5-3 1.26V16h-3V9h3v1.34C14.05 9.42 16.29 9 16.29 12.16V16z"></path></svg></div>
+                     <div class="text"><div class="label">Profesyonel Ağ</div><div class="value">LinkedIn Profilim</div></div>
+                 </a>
+            </div>
+        </section>
+    </div>
+    
+    <div id="qr-modal" class="qr-modal"><div class="qr-modal-content"><div id="qrcode-container"></div><p style="font-size:16px; color:#666; margin:0 0 15px 0;">Kartviziti paylaşmak için QR kodu okutun.</p><span id="close-qr-modal" class="close-btn">Kapat</span></div></div>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+    <script> /* Scriptler */ </script>
+</body>
+</html>

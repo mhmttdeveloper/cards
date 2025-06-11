@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avukat Dijital Kartvizit</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Heroicons for some extra icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* Inter fontunu tüm sayfaya uygula */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Tasarımda kullanılan yumuşak arka plan renkleri */
+        .bg-custom-main {
+             background-color: #f8f9fa; /* Ana arka plan */
+        }
+        .bg-custom-card {
+            background-color: #ffffff; /* Ana kartvizit kartı */
+        }
+        .bg-custom-info {
+            background-color: #fefcfb; /* İletişim bilgileri ve platformlar kartı */
+             border: 1px solid #f2e9e4;
+        }
+        .icon-bg {
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+<body class="bg-custom-main">
+
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <!-- Ana Kartvizit Konteyneri -->
+        <div class="max-w-sm w-full bg-custom-card rounded-3xl shadow-lg p-6 text-center">
+            
+            <!-- Profil Fotoğrafı -->
+            <div class="mb-5">
+                <img 
+                    src="https://placehold.co/128x128/2d3748/ffffff?text=Av." 
+                    alt="Profil Fotoğrafı" 
+                    class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white shadow-md"
+                    onerror="this.onerror=null;this.src='https://placehold.co/128x128/2d3748/ffffff?text=Hata';">
+            </div>
+
+            <!-- İsim ve Ünvan -->
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-800">Av. Ahmet Yılmaz</h1>
+                <p class="text-md text-gray-500 mt-1">Ceza Hukuku Uzmanı</p>
+            </div>
+
+            <!-- Aksiyon Butonları -->
+            <div class="grid grid-cols-5 gap-2 mb-8">
+                <!-- Telefon et -->
+                <a href="tel:+905551234567" class="flex flex-col items-center text-gray-700 hover:text-blue-600 transition-colors group">
+                    <div class="w-12 h-12 flex items-center justify-center icon-bg rounded-full mb-1 group-hover:bg-blue-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <span class="text-xs text-center font-medium">Telefon et</span>
+                </a>
+                <!-- Rehbere Ekle -->
+                <a href="#" class="flex flex-col items-center text-gray-700 hover:text-green-600 transition-colors group">
+                    <div class="w-12 h-12 flex items-center justify-center icon-bg rounded-full mb-1 group-hover:bg-green-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                    </div>
+                    <span class="text-xs text-center font-medium">Rehbere Ekle</span>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/905551234567" target="_blank" class="flex flex-col items-center text-gray-700 hover:text-green-500 transition-colors group">
+                    <div class="w-12 h-12 flex items-center justify-center icon-bg rounded-full mb-1 group-hover:bg-green-100">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.287.468-1.173 4.249 4.35-1.14z"/></svg>
+                    </div>
+                    <span class="text-xs text-center font-medium">WhatsApp</span>
+                </a>
+                <!-- E-posta gönder -->
+                <a href="mailto:ahmet.yilmaz@hukuk.com" class="flex flex-col items-center text-gray-700 hover:text-red-600 transition-colors group">
+                    <div class="w-12 h-12 flex items-center justify-center icon-bg rounded-full mb-1 group-hover:bg-red-100">
+                       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <span class="text-xs text-center font-medium">E-posta</span>
+                </a>
+                <!-- Yol Tarifi -->
+                <a href="#" class="flex flex-col items-center text-gray-700 hover:text-orange-600 transition-colors group">
+                    <div class="w-12 h-12 flex items-center justify-center icon-bg rounded-full mb-1 group-hover:bg-orange-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <span class="text-xs text-center font-medium">Yol Tarifi</span>
+                </a>
+            </div>
+
+            <!-- İletişim Bilgileri Kartı -->
+            <div class="bg-custom-info rounded-2xl p-5 text-left space-y-4">
+                <h3 class="font-semibold text-lg text-gray-700 -mb-2">İletişim bilgileri</h3>
+                <!-- Telefon Numarası -->
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <div><p class="text-gray-800">0555 123 45 67</p></div>
+                </div>
+                <!-- E-posta Adresi -->
+                <div class="flex items-center">
+                     <svg class="w-6 h-6 text-gray-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <div><p class="text-gray-800">ahmet.yilmaz@hukuk.com</p></div>
+                </div>
+                 <!-- Web Sitesi -->
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 019-9m-9 9h18"></path></svg>
+                    <div><p class="text-gray-800">www.yilmazhukuk.com</p></div>
+                </div>
+                 <!-- Hukuk Bürosu -->
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-500 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <div><p class="text-gray-800">Yılmaz Hukuk Bürosu</p></div>
+                </div>
+            </div>
+
+            <!-- Platformlar Kartı -->
+             <div class="bg-custom-info rounded-2xl p-5 text-left mt-4">
+                <h3 class="font-semibold text-lg mb-4 text-gray-700">Platformlar</h3>
+                <div class="space-y-4">
+                    <!-- LinkedIn -->
+                    <a href="#" class="flex items-center text-gray-800 hover:text-blue-700">
+                       <svg class="w-6 h-6 text-blue-700 mr-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <p>LinkedIn</p>
+                    </a>
+                     <!-- Instagram -->
+                    <a href="#" class="flex items-center text-gray-800 hover:text-pink-600">
+                       <svg class="w-6 h-6 text-pink-600 mr-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" ><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                        <p>Instagram</p>
+                    </a>
+                    <!-- X -->
+                    <a href="#" class="flex items-center text-gray-800 hover:text-black">
+                        <svg class="w-6 h-6 text-black mr-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        <p>X</p>
+                    </a>
+                </div>
+            </div>
+            
+             <!-- Paylaşma Çekmecesi -->
+            <div class="bg-gray-100 rounded-2xl p-4 text-center mt-4">
+                <div class="flex justify-around items-center">
+                    <!-- Paylaş Butonu -->
+                    <button class="flex flex-col items-center text-gray-700 hover:text-indigo-600 transition-colors group">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-full mb-1 group-hover:bg-indigo-100">
+                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.368a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path></svg>
+                        </div>
+                        <span class="text-xs font-medium">Paylaş</span>
+                    </button>
+                    <!-- QR Olarak Paylaş -->
+                     <button class="flex flex-col items-center text-gray-700 hover:text-indigo-600 transition-colors group">
+                        <div class="w-12 h-12 flex items-center justify-center rounded-full mb-1 group-hover:bg-indigo-100">
+                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6.5 2.5l-2.5 2.5M12 18v1m-3.5-1.5l-2.5 2.5M4 12H2m13.5-3.5l2.5-2.5M6 6l-2.5-2.5M18 6l2.5-2.5M12 6V5m-2 1h4v4h-4V6zM4 12a8 8 0 018-8m-5 8a5 5 0 005 5m0 0a5 5 0 005-5m-5 5v2m-5-2H3m14 0h-2"></path></svg>
+                        </div>
+                        <span class="text-xs font-medium">QR ile Paylaş</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
