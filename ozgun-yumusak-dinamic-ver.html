@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sayfası</title>
+    <style>
+        /* --- FONT VE TEMEL STİLLER --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-dark: #1a1d24;
+            --text-light: #6a717f;
+            --accent-blue: #3a5a9c;
+            --divider: #f0f2f5;
+            --content-bg: #f9fafb;
+            --icon-bg: #eff3f9;
+            --sec-btn-bg: var(--divider);
+            --sec-btn-hover-bg: #e6e8eb;
+            --info-item-active-bg: #e9ecef;
+            --toast-bg: #333;
+            --profile-photo-filter: none;
+        }
+        
+        /* --- KARANLIK MOD DEĞİŞKENLERİ --- */
+        body[data-theme="dark"] {
+            --bg-color: #1a1d24;
+            --text-dark: #f0f2f5;
+            --text-light: #a0a7b5;
+            --accent-blue: #5d82d1;
+            --divider: #2a2e37;
+            --content-bg: #22262f;
+            --icon-bg: #2a2e37;
+            --sec-btn-bg: var(--divider);
+            --sec-btn-hover-bg: #3a3f4a;
+            --info-item-active-bg: #3a3f4a;
+            --toast-bg: #f0f2f5;
+            --toast-color: #1a1d24;
+            --profile-photo-filter: invert(1) hue-rotate(180deg);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* --- ANA YAPI --- */
+        .ozgun-main {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .ozgun-hero-section {
+            padding: 40px 24px;
+            text-align: center;
+            position: relative; /* Switch butonu için konumlandırma */
+        }
+
+        .ozgun-profile-photo {
+            width: 300px;
+            margin-bottom: 24px;
+            filter: var(--profile-photo-filter);
+            transition: filter 0.3s ease;
+        }
+        
+        /* --- EYLEM BUTONLARI --- */
+        .ozgun-actions {
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .ozgun-action-btn {
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .ozgun-first-btn {
+            background-color: var(--accent-blue);
+            color: #fff;
+        }
+
+        .ozgun-first-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(58, 90, 156, 0.2);
+        }
+         .ozgun-first-btn:active {
+            background-color: #314d87;
+        }
+
+
+        .ozgun-sec-btn {
+            background-color: var(--sec-btn-bg);
+            color: var(--text-dark);
+        }
+
+        .ozgun-sec-btn:hover {
+            transform: translateY(-2px);
+            background-color: var(--sec-btn-hover-bg);
+        }
+        
+        /* --- İÇERİK BÖLÜMÜ --- */
+        .ozgun-content-sec {
+            margin-top:10px;
+            padding: 40px 24px;
+            background-color: var(--content-bg);
+            border-top: 1px solid var(--divider);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .ozgun-content-sec-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .ozgun-info-area {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .ozgun-info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+            padding: 8px;
+            border-radius: 8px;
+            margin: -8px; /* Padding telafisi */
+            transition: all 0.15s ease-out;
+        }
+        
+         .ozgun-info-item:active {
+            transform: scale(0.97);
+            background-color: var(--info-item-active-bg);
+        }
+
+        .ozgun-info-item .ozgun-icon {
+            color: var(--accent-blue);
+            background-color: var(--icon-bg);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .ozgun-info-item .ozgun-text .ozgun-lab {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .ozgun-info-item .ozgun-text .ozgun-val {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* --- TEMA DEĞİŞTİRME ANAHTARI --- */
+        .theme-switcher-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 28px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-blue);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+        
+        /* --- KOPYALAMA BİLDİRİMİ --- */
+        .copyable {
+            cursor: pointer;
+        }
+
+        #toast-notification {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: var(--toast-bg);
+            color: var(--toast-color, #fff); /* Fallback color */
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        #toast-notification.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="ozgun-main">
+        <section class="ozgun-hero-section">
+             <!-- TEMA DEĞİŞTİRİCİ -->
+            <div class="theme-switcher-container">
+                <label class="theme-switch" for="theme-toggle" title="Temayı Değiştir">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            
+            <img class="ozgun-profile-photo" src="https://korkuthukuk.av.tr/wp-content/uploads/2025/06/siyah-dikey-v2.svg" alt="Profil Fotoğrafı" onerror="this.style.display='none'">
+        </section>
+
+        <section class="ozgun-actions">
+            <a href="tel:+905388138728" id="ozgun-call-btn" class="ozgun-action-btn ozgun-first-btn"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg> Ara</a>
+            <a href="https://wa.me/905388138728" id="ozgun-wapp" class="ozgun-action-btn ozgun-sec-btn"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.296-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg> Whatsapp</a>
+        </section>
+
+        <section class="ozgun-content-sec">
+            <h2 class="ozgun-content-sec-title">Hızlı İletişim</h2>
+            <div class="ozgun-info-area">
+                <a href="mailto:info@korkuthukuk.av.tr" class="ozgun-info-item">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-val">E-posta Gönder</div></div>
+                </a>
+                <a href="https://maps.app.goo.gl/zb3DjJxY6fY8bMBv7" target="_blank" class="ozgun-info-item">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.39.39-1.02 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-val">Yol Tarifi</div></div>
+                </a>
+                <a href="https://korkuthukuk.av.tr/" target="_blank" class="ozgun-info-item">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-val">Web Sitesi</div></div>
+                </a>
+            </div>
+
+            <h2 class="ozgun-content-sec-title" style="margin-top:40px;">Bilgiler</h2>
+            <div class="ozgun-info-area">
+                <div class="ozgun-info-item copyable" data-copy-label="Telefon" data-copy-value="+905388138728">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-lab">Telefon</div><div class="ozgun-val">+90 538 813 87 28</div></div>
+                </div>
+                <div class="ozgun-info-item copyable" data-copy-label="Telefon" data-copy-value="+905314082902">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-lab">Telefon</div><div class="ozgun-val">+90 531 408 29 02</div></div>
+                </div>
+                <div class="ozgun-info-item copyable" data-copy-label="E-posta" data-copy-value="info@korkuthukuk.av.tr">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-lab">E-posta</div><div class="ozgun-val">info@korkuthukuk.av.tr</div></div>
+                </div>
+                <div class="ozgun-info-item copyable" data-copy-label="Adres" data-copy-value="Mustafa Kemal Mahallesi, 2155. Sokak No:4, NEP Ofis, Kat 1, No:3, Çankaya / ANKARA">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-lab">Adres</div><div class="ozgun-val">Mustafa Kemal Mahallesi, 2155. Sokak No:4, NEP Ofis, Kat 1, No:3, Çankaya / ANKARA</div></div>
+                </div>
+            </div>
+
+            <h2 class="ozgun-content-sec-title" style="margin-top:40px;">Diğer</h2>
+            <div class="ozgun-info-area">
+                <a href="https://korkuthukuk.av.tr/wp-content/uploads/card/korkut-hukuk.vcf" class="ozgun-info-item">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 20 20" width="20" height="20"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 11a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1v-1z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-val">Rehbere Kaydet</div></div>
+                </a>
+                <a href="#" id="share-button" class="ozgun-info-item">
+                    <div class="ozgun-icon"><svg fill="currentColor" viewBox="0 0 20 20" width="20" height="20"><path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"></path></svg></div>
+                    <div class="ozgun-text"><div class="ozgun-val">Paylaş</div></div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <div id="toast-notification"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            // 1. Tema değiştirme fonksiyonu
+            const setTheme = (theme) => {
+                body.dataset.theme = theme;
+                localStorage.setItem('theme', theme);
+                themeToggle.checked = theme === 'dark';
+            };
+
+            // 2. Manuel toggle için listener
+            themeToggle.addEventListener('change', () => {
+                setTheme(themeToggle.checked ? 'dark' : 'light');
+            });
+
+            // 3. Sistem temasını dinlemek için Media Query nesnesi
+            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            // 4. Sayfa ilk yüklendiğinde temayı ayarla
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                setTheme(darkModeMediaQuery.matches ? 'dark' : 'light');
+            }
+
+            // 5. SİSTEM TEMASI DEĞİŞTİĞİNDE ANINDA GÜNCELLEME (EKLENEN KISIM)
+            darkModeMediaQuery.addEventListener('change', e => {
+                setTheme(e.matches ? 'dark' : 'light');
+            });
+
+            // --- KOPYALAMA İŞLEVİ (Değişiklik yok)---
+            const copyableItems = document.querySelectorAll('.copyable');
+            const toast = document.getElementById('toast-notification');
+            let toastTimeout;
+
+            function showToast(message) {
+                clearTimeout(toastTimeout);
+                toast.textContent = message;
+                toast.classList.add('show');
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            }
+
+            function copyToClipboard(textToCopy, label) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showToast(`${label} kopyalandı!`);
+                }).catch(err => {
+                    console.error('Kopyalama başarısız oldu: ', err);
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = textToCopy;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    try {
+                        document.execCommand('copy');
+                        showToast(`${label} kopyalandı!`);
+                    } catch (e) {
+                         showToast(`Kopyalama başarısız!`);
+                    }
+                    document.body.removeChild(tempTextArea);
+                });
+            }
+
+            copyableItems.forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const label = item.dataset.copyLabel;
+                    const valueToCopy = item.dataset.copyValue;
+                    if (valueToCopy) {
+                        copyToClipboard(valueToCopy, label);
+                    }
+                });
+            });
+
+            // --- PAYLAŞIM İŞLEVİ (Değişiklik yok)---
+            const shareButton = document.getElementById('share-button');
+            if (shareButton) {
+                shareButton.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    const shareData = {
+                        title: 'Korkut Hukuk & Danışmanlık İletişim Kartı',
+                        text: 'Korkut Hukuk Bürosu\'nun iletişim bilgilerini inceleyebilirsiniz.',
+                        url: window.location.href
+                    };
+                    if (navigator.share) {
+                        try {
+                            await navigator.share(shareData);
+                        } catch (err) {
+                            console.error('Paylaşım sırasında hata oluştu:', err);
+                        }
+                    } else {
+                        copyToClipboard(window.location.href, "Sayfa Linki");
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
